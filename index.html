@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carolina Nava · Mujer Viaja Chapala</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink:    #E91E8C;
+    --teal:    #2BBCB3;
+    --coral:   #F2705A;
+    --dark:    #2D2D2D;
+    --light:   #FFF5FB;
+    --card-bg: #FFFFFF;
+    --muted:   #8A7A85;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    min-height: 100vh;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+    background: var(--light);
+    display: flex;
+    justify-content: center;
+    padding-bottom: 60px;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Soft background blobs */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 0% 0%,   rgba(233,30,140,0.10) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 100% 100%, rgba(43,188,179,0.10) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 50% 50%,  rgba(242,112,90,0.05) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 430px;
+    padding: 0 18px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    text-align: center;
+    padding: 44px 0 28px;
+    animation: fadeUp 0.7s ease both;
+  }
+
+  /* Main logo */
+  .logo-main {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: contain;
+    background: white;
+    padding: 10px;
+    box-shadow: 0 6px 28px rgba(233,30,140,0.18);
+    margin: 0 auto 16px;
+    display: block;
+    border: 3px solid rgba(233,30,140,0.2);
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: var(--dark);
+    line-height: 1.15;
+  }
+  .hero-name span { color: var(--pink); }
+
+  .hero-handle {
+    margin-top: 5px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--teal);
+    font-weight: 600;
+  }
+
+  .hero-bio {
+    margin-top: 12px;
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.65;
+    padding: 0 8px;
+  }
+
+  /* Chips */
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    justify-content: center;
+    margin-top: 14px;
+  }
+  .chip {
+    background: white;
+    border-radius: 20px;
+    padding: 4px 13px;
+    font-size: 11.5px;
+    font-weight: 600;
+    border: 1.5px solid;
+  }
+  .chip.pink  { border-color: var(--pink);  color: var(--pink); }
+  .chip.teal  { border-color: var(--teal);  color: var(--teal); }
+  .chip.coral { border-color: var(--coral); color: var(--coral); }
+
+  /* ── DIVIDER ── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 24px 0 14px;
+  }
+  .div-line { flex: 1; height: 1px; background: rgba(233,30,140,0.18); }
+  .div-logo {
+    height: 36px;
+    object-fit: contain;
+    opacity: 0.9;
+  }
+  .div-text {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  /* ── CARDS ── */
+  .cards { display: flex; flex-direction: column; gap: 10px; margin-bottom: 4px; }
+
+  .card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 15px 18px;
+    text-decoration: none;
+    box-shadow: 0 2px 14px rgba(0,0,0,0.06);
+    border: 1.5px solid transparent;
+    transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::after {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    border-radius: 4px 0 0 4px;
+  }
+  .card.pink-c::after  { background: var(--pink); }
+  .card.teal-c::after  { background: var(--teal); }
+  .card.coral-c::after { background: var(--coral); }
+
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 26px rgba(0,0,0,0.10);
+  }
+  .card.pink-c:hover  { border-color: rgba(233,30,140,0.25); }
+  .card.teal-c:hover  { border-color: rgba(43,188,179,0.25); }
+  .card.coral-c:hover { border-color: rgba(242,112,90,0.25); }
+
+  .card-emoji { font-size: 24px; min-width: 30px; text-align: center; }
+
+  .card-body { flex: 1; }
+  .card-label {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1.2;
+  }
+  .card-sub { font-size: 11.5px; color: var(--muted); margin-top: 3px; line-height: 1.4; }
+
+  .card-arrow {
+    font-size: 18px;
+    color: #ddd;
+    transition: color 0.18s, transform 0.18s;
+  }
+  .card:hover .card-arrow { transform: translateX(3px); }
+  .card.pink-c:hover  .card-arrow { color: var(--pink); }
+  .card.teal-c:hover  .card-arrow { color: var(--teal); }
+  .card.coral-c:hover .card-arrow { color: var(--coral); }
+
+  /* ── SOCIAL GRID ── */
+  .social-row {
+    display: flex;
+    gap: 9px;
+    margin-top: 6px;
+    margin-bottom: 4px;
+  }
+  .soc-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    background: white;
+    border-radius: 14px;
+    padding: 14px 8px;
+    text-decoration: none;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    transition: transform 0.18s, box-shadow 0.18s;
+    border: 1.5px solid transparent;
+  }
+  .soc-btn span:first-child { font-size: 24px; }
+  .soc-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.10); }
+  .soc-btn.ig  { color: var(--pink);  border-color: rgba(233,30,140,0.2); }
+  .soc-btn.tk  { color: var(--dark);  border-color: rgba(0,0,0,0.1); }
+  .soc-btn.fb  { color: #1877F2;      border-color: rgba(24,119,242,0.2); }
+
+  /* ── FOOTER ── */
+  .footer { text-align: center; margin-top: 36px; }
+  .footer img { height: 28px; object-fit: contain; opacity: 0.6; }
+  .footer-txt { font-size: 10.5px; color: #bbb; margin-top: 6px; letter-spacing: 0.5px; }
+
+  /* ── BOOKER WIDGET ── */
+  .booker-wrapper {
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 4px 20px rgba(233,30,140,0.10);
+    border: 1.5px solid rgba(233,30,140,0.15);
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .booker-header {
+    background: linear-gradient(135deg, var(--pink), #c4006e);
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .booker-icon { font-size: 26px; }
+  .booker-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: white;
+  }
+  .booker-sub {
+    font-size: 11px;
+    color: rgba(255,255,255,0.8);
+    margin-top: 2px;
+  }
+  .booker-body {
+    padding: 16px 12px;
+    min-height: 80px;
+  }
+  .booker-body .onlyBooker__section__vertical {
+    width: 100%;
+  }
+  .booker-body #ptw-container {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* ── ANIMS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: none; }
+  }
+  .hero              { animation: fadeUp 0.65s 0.00s ease both; }
+  .section-viajes    { animation: fadeUp 0.55s 0.10s ease both; }
+  .section-buscador  { animation: fadeUp 0.55s 0.18s ease both; }
+  .section-gestoria  { animation: fadeUp 0.55s 0.26s ease both; }
+  .section-tienda    { animation: fadeUp 0.55s 0.34s ease both; }
+  .section-social    { animation: fadeUp 0.55s 0.42s ease both; }
+  .footer            { animation: fadeUp 0.55s 0.50s ease both; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <img
+      src="/mnt/user-data/uploads/1001076002.jpg"
+      alt="Mujer Viaja Chapala"
+      class="logo-main"
+    >
+    <div class="hero-name">Carolina Nava<br><span>Mujer Viaja Chapala</span></div>
+    <div class="hero-handle">@mujerviajariberachapala</div>
+    <div class="hero-bio">
+      Asesora de viajes para mujeres 🌍 · Gestoría de pasaporte y visa 🛂 · Artículos de viaje que me encantan 🎒<br>
+      📍 Ribera de Chapala, México
+    </div>
+    <div class="chips">
+      <span class="chip pink">✈️ Paquetes de viaje</span>
+      <span class="chip teal">🛂 Pasaporte &amp; Visa</span>
+      <span class="chip coral">🎒 Mis imprescindibles</span>
+    </div>
+  </div>
+
+  <!-- VIAJES -->
+  <div class="section-viajes">
+    <div class="divider">
+      <div class="div-line"></div>
+      <div class="div-text">✈️ &nbsp;Viajes</div>
+      <div class="div-line"></div>
+    </div>
+    <div class="cards">
+      <a href="https://franquicia.mujerviaja.com/agencia/bJW2rNXmf6/carolina-nava" target="_blank" class="card pink-c">
+        <div class="card-emoji">🌍</div>
+        <div class="card-body">
+          <div class="card-label">Ver todos mis paquetes</div>
+          <div class="card-sub">Circuitos, tours, despedidas, quinceañeras, cruceros…</div>
+        </div>
+        <div class="card-arrow">›</div>
+      </a>
+      <a href="https://wa.me/5255400224353?text=Hola%20Carolina%2C%20quiero%20cotizar%20un%20viaje" target="_blank" class="card pink-c">
+        <div class="card-emoji">💬</div>
+        <div class="card-body">
+          <div class="card-label">Cotiza tu viaje gratis</div>
+          <div class="card-sub">Escríbeme y te armo el viaje de tus sueños</div>
+        </div>
+        <div class="card-arrow">›</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- BUSCADOR DE VIAJES -->
+  <div class="section-buscador">
+    <div class="divider">
+      <div class="div-line"></div>
+      <div class="div-text">🔍 &nbsp;Busca tu viaje</div>
+      <div class="div-line"></div>
+    </div>
+
+    <div class="booker-wrapper">
+      <div class="booker-header">
+        <span class="booker-icon">✈️</span>
+        <div>
+          <div class="booker-title">Cotizador en línea</div>
+          <div class="booker-sub">Busca vuelos, hoteles y paquetes al instante</div>
+        </div>
+      </div>
+      <div class="booker-body">
+        <section class="onlyBooker__section__vertical onlyBooker__fixed__vertical">
+          <div id="ptw-container" class="ptw-vertical-search bookerContainer-vertical">
+            <script type="text/javascript" src="https://widgets.priceres.com.mx/travel-agencyweb/jsonpBooker/startWidget?container=ptw-container&UseConfigs=false&WhiteLabelId=mujer-viaja-chapala"></script>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- GESTORÍA -->
+  <div class="section-gestoria">
+    <div class="divider">
+      <div class="div-line"></div>
+      <img src="/mnt/user-data/uploads/1001076790.png" alt="Gestoría para Viajeras" class="div-logo">
+      <div class="div-line"></div>
+    </div>
+    <div class="cards">
+      <a href="https://wa.me/5255400224353?text=Hola%20Carolina%2C%20necesito%20ayuda%20con%20mi%20pasaporte" target="_blank" class="card teal-c">
+        <div class="card-emoji">🛂</div>
+        <div class="card-body">
+          <div class="card-label">Gestoría de Pasaporte</div>
+          <div class="card-sub">Te guío en cada paso del proceso</div>
+        </div>
+        <div class="card-arrow">›</div>
+      </a>
+      <a href="https://wa.me/5255400224353?text=Hola%20Carolina%2C%20necesito%20información%20sobre%20mi%20visa" target="_blank" class="card teal-c">
+        <div class="card-emoji">📋</div>
+        <div class="card-body">
+          <div class="card-label">Asesoría de Visa</div>
+          <div class="card-sub">EE.UU., Schengen, Canadá y más</div>
+        </div>
+        <div class="card-arrow">›</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- TIENDA -->
+  <div class="section-tienda">
+    <div class="divider">
+      <div class="div-line"></div>
+      <img src="/mnt/user-data/uploads/1001076834.png" alt="Mis Imprescindibles" class="div-logo">
+      <div class="div-line"></div>
+    </div>
+    <div class="cards">
+      <a href="#tienda" class="card coral-c">
+        <div class="card-emoji">🎒</div>
+        <div class="card-body">
+          <div class="card-label">Mis artículos favoritos</div>
+          <div class="card-sub">Lo que yo llevo en cada viaje — ¡probado y aprobado!</div>
+        </div>
+        <div class="card-arrow">›</div>
+      </a>
+      <a href="#tienda" class="card coral-c">
+        <div class="card-emoji">🛍️</div>
+        <div class="card-body">
+          <div class="card-label">Ver tienda completa</div>
+          <div class="card-sub">Maletas, organizadores, canguros, adaptadores…</div>
+        </div>
+        <div class="card-arrow">›</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- REDES -->
+  <div class="section-social">
+    <div class="divider">
+      <div class="div-line"></div>
+      <div class="div-text">Sígueme</div>
+      <div class="div-line"></div>
+    </div>
+    <div class="social-row">
+      <a href="https://www.instagram.com/mujerviajariberachapala" target="_blank" class="soc-btn ig">
+        <span>📸</span>
+        <span>Instagram</span>
+      </a>
+      <a href="https://vm.tiktok.com/ZMkda1MFD/" target="_blank" class="soc-btn tk">
+        <span>🎵</span>
+        <span>TikTok</span>
+      </a>
+      <a href="https://www.facebook.com/share/A2rqm3hgme36cezZ/" target="_blank" class="soc-btn fb">
+        <span>👥</span>
+        <span>Facebook</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <img src="/mnt/user-data/uploads/1001076002.jpg" alt="Mujer Viaja Chapala">
+    <div class="footer-txt">Agente certificada · Mujer Viaja Chapala · Ribera de Chapala</div>
+  </div>
+
+</div>
+</body>
+</html>
